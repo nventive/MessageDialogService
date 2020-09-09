@@ -1,0 +1,10 @@
+C:\Code\Nventive\Chinook\MessageDialogService\src\MessageDialog\bin\Debug\netstandard2.0\MessageDialogService.deps.json
+C:\Code\Nventive\Chinook\MessageDialogService\src\MessageDialog\bin\Debug\netstandard2.0\MessageDialogService.dll
+C:\Code\Nventive\Chinook\MessageDialogService\src\MessageDialog\bin\Debug\netstandard2.0\MessageDialogService.pdb
+C:\Code\Nventive\Chinook\MessageDialogService\src\MessageDialog\bin\Debug\netstandard2.0\MessageDialogService.xml
+C:\Code\Nventive\Chinook\MessageDialogService\src\MessageDialog\obj\Debug\netstandard2.0\MessageDialog.AssemblyInfoInputs.cache
+C:\Code\Nventive\Chinook\MessageDialogService\src\MessageDialog\obj\Debug\netstandard2.0\MessageDialog.AssemblyInfo.cs
+C:\Code\Nventive\Chinook\MessageDialogService\src\MessageDialog\obj\Debug\netstandard2.0\MessageDialog.csproj.CoreCompileInputs.cache
+C:\Code\Nventive\Chinook\MessageDialogService\src\MessageDialog\obj\Debug\netstandard2.0\MessageDialogService.dll
+C:\Code\Nventive\Chinook\MessageDialogService\src\MessageDialog\obj\Debug\netstandard2.0\MessageDialogService.xml
+C:\Code\Nventive\Chinook\MessageDialogService\src\MessageDialog\obj\Debug\netstandard2.0\MessageDialogService.pdb
