@@ -1,6 +1,0 @@
-attr;C:\Code\Nventive\Chinook\MessageDialogService\src\MessageDialog.Uno\obj\Debug\monoandroid10.0\lp\3\jl\res\values\attrs.xml
-declare-styleable;C:\Code\Nventive\Chinook\MessageDialogService\src\MessageDialog.Uno\obj\Debug\monoandroid10.0\lp\3\jl\res\values\attrs.xml
-item;C:\Code\Nventive\Chinook\MessageDialogService\src\MessageDialog.Uno\obj\Debug\monoandroid10.0\lp\3\jl\res\values\styles.xml
-resources;C:\Code\Nventive\Chinook\MessageDialogService\src\MessageDialog.Uno\obj\Debug\monoandroid10.0\lp\3\jl\res\values\attrs.xml
-resources;C:\Code\Nventive\Chinook\MessageDialogService\src\MessageDialog.Uno\obj\Debug\monoandroid10.0\lp\3\jl\res\values\styles.xml
-style;C:\Code\Nventive\Chinook\MessageDialogService\src\MessageDialog.Uno\obj\Debug\monoandroid10.0\lp\3\jl\res\values\styles.xml
