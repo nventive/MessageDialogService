@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net5.0-windows10.0.19041.0</TargetFramework>
+		<TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
+		<GenerateLibraryLayout>true</GenerateLibraryLayout>
+		<RootNamespace>MessageDialogService</RootNamespace>
+		<Authors>nventive</Authors>
+		<Company>nventive</Company>
+		<AssemblyName>MessageDialogService.Uno</AssemblyName>
+		<PackageId>MessageDialogService.Uno</PackageId>
+		<Description>MessageDialogService.Uno</Description>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<DefineConstants>HAS_WINUI</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Uno.Core" Version="2.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\MessageDialog\MessageDialog.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="..\MessageDialog.Uno\MessageDialogBuilder.cs" />
+		<Compile Include="..\MessageDialog.Uno\MessageDialogBuilderDelegate.cs" />
+		<Compile Include="..\MessageDialog.Uno\MessageDialogService.cs" />
+		<Compile Include="..\MessageDialog.Uno\Windows.UI.CoreDispatcher.cs" />
+	</ItemGroup>
+</Project>
