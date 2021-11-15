@@ -13,6 +13,13 @@ namespace MessageDialogService
 	/// </summary>
 	public class AcceptOrDefaultMessageDialogService: IMessageDialogService
 	{
+		private CancellationTokenSource _ctSourceCurrentDialog;
+
+		public void ForceCloseDialog()
+		{
+			_ctSourceCurrentDialog.Cancel();
+		}
+
 		public Task<TResult> ShowMessage<TResult>(
 			CancellationToken ct,
 			Func<IMessageDialogBuilder<TResult>, IMessageDialogBuilder<TResult>> messageBuilder,
@@ -24,6 +31,7 @@ namespace MessageDialogService
 				throw new ArgumentNullException(nameof(messageBuilder));
 			}
 
+			_ctSourceCurrentDialog = CancellationTokenSource.CreateLinkedTokenSource(ct);
 			var result = AcceptOrDefault(messageBuilder, defaultResult);
 
 			return Task.FromResult(result);
@@ -40,6 +48,7 @@ namespace MessageDialogService
 				throw new ArgumentNullException(nameof(messageBuilder));
 			}
 
+			_ctSourceCurrentDialog = CancellationTokenSource.CreateLinkedTokenSource(ct);
 			var result = AcceptOrDefault(messageBuilder, defaultResult);
 
 			return Task.FromResult(result);

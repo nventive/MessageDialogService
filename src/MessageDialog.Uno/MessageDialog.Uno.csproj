@@ -19,6 +19,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+	<!-- Can be removed when Uno.UI will be updated -->
+    <PackageReference Include="Uno.SourceGenerationTasks" Version="3.2.0" />
     <PackageReference Include="Uno.UI" Version="3.0.12" />
   </ItemGroup>
 

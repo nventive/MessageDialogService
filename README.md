@@ -1,41 +1,38 @@
-# Open Source Project Template
+# MessageDialogService
 
-This repository contains a template to seed a repository for an Open Source
-project.
-
-## How to use this template
-
-1. Check out this repository
-2. Delete the `.git` folder
-3. Git init this repository and start working on your project!
-4. Prior to submitting your request for publication, make sure to review the
-   [Open Source guidelines for publications](https://nventive.visualstudio.com/Internal/_wiki/wikis/Internal_wiki?wikiVersion=GBwikiMaster&pagePath=%2FOpen%20Source%2FPublishing&pageId=7120).
-
-## Features (to keep as-is, configure or remove)
-- [Mergify](https://mergify.io/) is configured. You can edit or remove [.mergify.yml](/.mergify.yml).
 - [allcontributors](https://allcontributors.org/) is configured. It helps adding contributors to the README.
-- [dependabot](https://dependabot.com/) is configured. This bot will open pull requests automatically to update nuget dependencies. This one could be annoying, feel free to remove the [.dependabot](/.dependabot) folder.
 
-The following is the template for the final README.md file:
-
----
-
-# Project Title
-
-{Project tag line}
-
-{Small description of the purpose of the project}
+Show native prompt with custom content and title.
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 ## Getting Started
 
-{Instructions to quickly get started using the project: pre-requisites, packages
-to install, sample code, etc.}
+Install the latest version of `MessageDialogService.Uno` in your project.
+
+There are 2 classes available that implement `IMessageDialogService`:
+
+- `AcceptOrDefaultMessageDialogService`
+  - Does not have a reference to Uno.
+  - [Reference](https://github.com/nventive/MessageDialogService/blob/master/src/MessageDialog/AcceptOrDefaultMessageDialogService.cs)
+- `MessageDialogService`
+  - Has a reference to Uno.
+  - [Reference](https://github.com/nventive/MessageDialogService/blob/master/src/MessageDialog.Uno/MessageDialogService.cs)
 
 ## Features
 
-{More details/listing of features of the project}
+### 1. Show Modal
+
+TODO: Explain builder and how to add content and title.
+
+### 2. Force Close Modal
+It is possible to manually close the current modal with:
+
+```csharp
+messageDialogService.ForceCloseModal();
+```
+
+This function is not async, therefore does not need to be awaited. This function will cancel the CancellationToken used by the modal. This will throw a System.OperationCanceledException.
 
 ## Changelog
 

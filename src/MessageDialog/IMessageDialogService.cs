@@ -36,5 +36,12 @@ namespace MessageDialogService
 			CancellationToken ct,
 			Func<IMessageDialogBuilder<MessageDialogResult>, IMessageDialogBuilder<MessageDialogResult>> messageBuilder,
 			MessageDialogResult defaultResult = MessageDialogResult.Cancel);
+
+		/// <summary>
+		/// It will force close the active prompt by cancelling it.
+		/// Calling this method will throw a System.OperationCanceledException where a prompt was showed.
+		/// </summary>
+		void ForceCloseDialog();
+
 	}
 }

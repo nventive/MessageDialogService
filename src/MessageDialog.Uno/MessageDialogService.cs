@@ -15,6 +15,7 @@ namespace MessageDialogService
 	{
 		private readonly Func<CoreDispatcher> _dispatcher;
 		private readonly IMessageDialogBuilderDelegate _messageDialogServiceDelegate;
+		private CancellationTokenSource _ctSourceCurrentDialog;
 
 		public MessageDialogService(
 			Func<CoreDispatcher> dispatcher,
@@ -25,8 +26,13 @@ namespace MessageDialogService
 			_messageDialogServiceDelegate = messageDialogServiceDelegate;
 		}
 
-		/// <inheritdoc />
-		public Task<MessageDialogResult> ShowMessage(
+        public void ForceCloseDialog()
+        {
+			_ctSourceCurrentDialog.Cancel();
+		}
+
+        /// <inheritdoc />
+        public Task<MessageDialogResult> ShowMessage(
 			CancellationToken ct, 
 			Func<IMessageDialogBuilder<MessageDialogResult>, IMessageDialogBuilder<MessageDialogResult>> messageBuilder, 
 			MessageDialogResult defaultResult = MessageDialogResult.Cancel
@@ -76,6 +82,8 @@ namespace MessageDialogService
 			Func<IMessageDialogBuilder<TResult>, IMessageDialogBuilder<TResult>> messageBuilder,
 			TResult defaultResult = default(TResult))
 		{
+			_ctSourceCurrentDialog = CancellationTokenSource.CreateLinkedTokenSource(ct);
+
 			var innerBuilder = new MessageDialogBuilder<TResult>(_messageDialogServiceDelegate);
 			var builder = messageBuilder(innerBuilder);
 
