@@ -1,28 +1,29 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
-  <PropertyGroup>
+	<PropertyGroup>
 		<!-- Change the TargetFrameworks depending on which platform you are building on. This avoids errors as it is impossible to build UAP on OSX (MacOS) -->
 		<TargetFrameworks Condition="'$([MSBuild]::IsOsPlatform(OSX))'">netstandard2.0;xamarinios10;</TargetFrameworks>
 		<TargetFrameworks Condition="'!$([MSBuild]::IsOsPlatform(OSX))'">netstandard2.0;xamarinios10;monoandroid10.0;monoandroid11.0;uap10.0.18362</TargetFrameworks>
-    <!-- Ensures the .xr.xml files are generated in a proper layout folder -->
-    <GenerateLibraryLayout>true</GenerateLibraryLayout>
-    <RootNamespace>MessageDialogService</RootNamespace>
+		<!-- Ensures the .xr.xml files are generated in a proper layout folder -->
+		<GenerateLibraryLayout>true</GenerateLibraryLayout>
+		<RootNamespace>MessageDialogService</RootNamespace>
 		<Authors>nventive</Authors>
 		<Company>nventive</Company>
 		<AssemblyName>MessageDialogService.Uno</AssemblyName>
 		<PackageId>MessageDialogService.Uno</PackageId>
 		<Description>MessageDialogService.Uno</Description>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-  </PropertyGroup>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-    <DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+		<DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Uno.UI" Version="3.0.12" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Uno.UI" Version="4.0.7" />
+		<PackageReference Include="Uno.Core" Version="4.0.1" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MessageDialog\MessageDialog.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\MessageDialog\MessageDialog.csproj" />
+	</ItemGroup>
 </Project>
