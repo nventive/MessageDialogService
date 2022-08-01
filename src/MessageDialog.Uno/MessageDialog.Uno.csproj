@@ -26,4 +26,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\MessageDialog\MessageDialog.csproj" />
 	</ItemGroup>
+
+	<Import Project="..\..\Shared\Shared.projitems" Label="Shared" />
 </Project>
