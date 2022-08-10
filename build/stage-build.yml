@@ -1,7 +1,11 @@
 ﻿steps:
-- task: GitVersion@5
+- task: gitversion/setup@0
   inputs:
-    runtime: 'core'
+    versionSpec: '5.10.1'
+  displayName: 'Install GitVersion'
+
+- task: gitversion/execute@0
+  inputs:
     useConfigFile: true
     configFilePath: build/gitversion.yml
   displayName: 'Calculate version'
