@@ -16,6 +16,10 @@
     versionSpec: $(NUGET_VERSION)
     checkLatest: false
 
+- task: NuGetAuthenticate@1
+  inputs:
+    forceReinstallCredentialProvider: true
+
 - task: MSBuild@1
   displayName: 'Restore solution packages'
   inputs:
