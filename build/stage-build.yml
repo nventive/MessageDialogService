@@ -1,11 +1,4 @@
 ﻿steps:
-## Install .netcore runtime required by GitVersion@5
-- task: UseDotNet@2
-  inputs:
-    packageType: 'runtime'
-    version: '2.1.0'
-    installationPath: '$(Agent.ToolsDirectory)/dotnet'
-
 - task: GitVersion@5
   inputs:
     runtime: 'core'
