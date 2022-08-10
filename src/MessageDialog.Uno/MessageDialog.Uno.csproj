@@ -20,6 +20,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="MSBuild.Sdk.Extras" Version="3.0.38">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="Uno.UI" Version="4.0.7" />
 		<PackageReference Include="Uno.Core" Version="4.0.1" />
 	</ItemGroup>
