@@ -14,7 +14,7 @@ namespace MessageDialogService
 	/// </summary>
 	public class MessageDialogService: IMessageDialogService
 	{
-#if IS_WINUI
+#if WINUI
 		private readonly DispatcherQueue _dispatcher;
 #else
 		private readonly Func<CoreDispatcher> _dispatcher;
@@ -22,7 +22,7 @@ namespace MessageDialogService
 		private readonly IMessageDialogBuilderDelegate _messageDialogServiceDelegate;
 
 		public MessageDialogService(
-#if IS_WINUI
+#if WINUI
 			DispatcherQueue dispatcher,
 #else
 			Func<CoreDispatcher> dispatcher,
@@ -132,7 +132,7 @@ namespace MessageDialogService
 				while (true);
 			}
 
-#if IS_WINUI
+#if WINUI
 			var information = await DispatcherQueueExtensions.TryEnqueueAsync(_dispatcher, CreateDialogUI, DispatcherQueuePriority.Normal);
 #else
 			var information = await _dispatcher().RunTaskAsync(CoreDispatcherPriority.Normal, CreateDialogUI);

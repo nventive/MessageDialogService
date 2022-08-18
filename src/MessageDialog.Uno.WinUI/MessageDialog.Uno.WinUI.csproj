@@ -6,7 +6,7 @@
 		<LangVersion>10.0</LangVersion>
 		<!-- Ensures the .xr.xml files are generated in a proper layout folder -->
 		<GenerateLibraryLayout>true</GenerateLibraryLayout>
-		<DefineConstants>$(DefineConstants);IS_WINUI</DefineConstants>
+		<DefineConstants>$(DefineConstants);WINUI</DefineConstants>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="MSBuild.Sdk.Extras" Version="3.0.44">
