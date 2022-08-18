@@ -16,10 +16,6 @@
     versionSpec: $(NUGET_VERSION)
     checkLatest: false
 
-- task: NuGetAuthenticate@1
-  inputs:
-    forceReinstallCredentialProvider: true
-
 - task: DotNetCoreCLI@2
   displayName: 'Install dotnet 6 workloads'
   inputs:
