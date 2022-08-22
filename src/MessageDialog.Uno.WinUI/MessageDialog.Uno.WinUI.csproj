@@ -6,6 +6,13 @@
 		<LangVersion>10.0</LangVersion>
 		<!-- Ensures the .xr.xml files are generated in a proper layout folder -->
 		<GenerateLibraryLayout>true</GenerateLibraryLayout>
+		<RootNamespace>MessageDialogService</RootNamespace>
+		<Authors>nventive</Authors>
+		<Company>nventive</Company>
+		<AssemblyName>MessageDialogService.Uno.WinUI</AssemblyName>
+		<PackageId>MessageDialogService.Uno.WinUI</PackageId>
+		<Description>MessageDialogService.Uno.WinUI</Description>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<DefineConstants>$(DefineConstants);WINUI</DefineConstants>
 	</PropertyGroup>
 	<ItemGroup>
