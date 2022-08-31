@@ -4,9 +4,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
-#if WINUI && WINDOWS10_0_18362_0_OR_GREATER
 using Windows.UI.Popups;
-#endif
 using Uno.Extensions;
 #if __IOS__ || __ANDROID__ || __WASM__
 using Uno.UI.Toolkit;
@@ -29,7 +27,9 @@ namespace MessageDialogService
 		public MessageDialogBuilderDelegate(Func<string, string> resourcesProvider, IntPtr windowHandle)
 		{
 			_resourcesProvider = resourcesProvider;
+#if WINUI && WINDOWS10_0_18362_0_OR_GREATER
 			_windowHandle = windowHandle;
+#endif
 		}
 
 		public IMessageDialogCommand<TResult> CreateCommand<TResult>(CommandInformation<TResult> id, string label, Action action)
@@ -39,7 +39,11 @@ namespace MessageDialogService
 
 		public IMessageDialogBuildResult<TResult> CreateMessageDialogBuildResult<TResult>()
 		{
-			return new MessageDialogWrapper<TResult>(_windowHandle);
+			return new MessageDialogWrapper<TResult>(
+#if WINUI && WINDOWS10_0_18362_0_OR_GREATER
+				_windowHandle
+#endif
+				);
 		}
 
 		public string GetResourceString(string key)
@@ -49,12 +53,16 @@ namespace MessageDialogService
 
 		private class MessageDialogWrapper<TResult> : IMessageDialogBuildResult<TResult>
 		{
-			private Windows.UI.Popups.MessageDialog _messageDialog;
+			private MessageDialog _messageDialog;
 #if WINUI && WINDOWS10_0_18362_0_OR_GREATER
 			private IntPtr _hwnd;
 #endif
 
-			public MessageDialogWrapper(IntPtr windowHandle)
+			public MessageDialogWrapper(
+#if WINUI && WINDOWS10_0_18362_0_OR_GREATER
+				IntPtr windowHandle
+#endif
+				)
 			{
 				_messageDialog = new Windows.UI.Popups.MessageDialog(content: string.Empty);
 #if WINUI && WINDOWS10_0_18362_0_OR_GREATER
