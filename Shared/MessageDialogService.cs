@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.System;
 using Windows.UI.Core;
 
 namespace MessageDialogService
@@ -23,6 +24,11 @@ namespace MessageDialogService
 		{
 			_dispatcher = dispatcher;
 			_messageDialogServiceDelegate = messageDialogServiceDelegate;
+#if WINUI
+			var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
+
+			WinRT.Interop.InitializeWithWindow.Initialize(_messageDialogServiceDelegate, hwnd);
+#endif
 		}
 
 		/// <inheritdoc />
