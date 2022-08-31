@@ -6,7 +6,9 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.Foundation.Metadata;
-using Windows.System;
+#if WINUI
+using Microsoft.UI.Dispatching;
+#endif
 
 namespace MessageDialogService
 {

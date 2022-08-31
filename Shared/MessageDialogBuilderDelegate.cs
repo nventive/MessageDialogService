@@ -4,7 +4,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
+#if WINUI && WINDOWS10_0_18362_0_OR_GREATER
 using Windows.UI.Popups;
+#endif
 using Uno.Extensions;
 #if __IOS__ || __ANDROID__ || __WASM__
 using Uno.UI.Toolkit;
@@ -15,14 +17,19 @@ namespace MessageDialogService
 	public partial class MessageDialogBuilderDelegate : IMessageDialogBuilderDelegate
 	{
 		private readonly Func<string, string> _resourcesProvider;
+#if WINUI && WINDOWS10_0_18362_0_OR_GREATER
+		private readonly IntPtr _windowHandle;
+#endif
 
 		/// <summary>
 		/// Initialises a new instance of the <see cref="MessageDialogBuilderDelegate"/> class.
 		/// </summary>
 		/// <param name="resourcesProvider">Returns a resource based on the provided key</param>
-		public MessageDialogBuilderDelegate(Func<string, string> resourcesProvider)
+		/// <param name="windowHandle"></param>
+		public MessageDialogBuilderDelegate(Func<string, string> resourcesProvider, IntPtr windowHandle)
 		{
 			_resourcesProvider = resourcesProvider;
+			_windowHandle = windowHandle;
 		}
 
 		public IMessageDialogCommand<TResult> CreateCommand<TResult>(CommandInformation<TResult> id, string label, Action action)
@@ -32,7 +39,7 @@ namespace MessageDialogService
 
 		public IMessageDialogBuildResult<TResult> CreateMessageDialogBuildResult<TResult>()
 		{
-			return new MessageDialogWrapper<TResult>();
+			return new MessageDialogWrapper<TResult>(_windowHandle);
 		}
 
 		public string GetResourceString(string key)
@@ -43,10 +50,16 @@ namespace MessageDialogService
 		private class MessageDialogWrapper<TResult> : IMessageDialogBuildResult<TResult>
 		{
 			private Windows.UI.Popups.MessageDialog _messageDialog;
+#if WINUI && WINDOWS10_0_18362_0_OR_GREATER
+			private IntPtr _hwnd;
+#endif
 
-			public MessageDialogWrapper()
+			public MessageDialogWrapper(IntPtr windowHandle)
 			{
 				_messageDialog = new Windows.UI.Popups.MessageDialog(content: string.Empty);
+#if WINUI && WINDOWS10_0_18362_0_OR_GREATER
+				_hwnd = windowHandle;
+#endif
 			}
 
 			public string Title
@@ -94,6 +107,9 @@ namespace MessageDialogService
 
 			public async Task<CommandInformation<TResult>> ShowMessage(CancellationToken ct)
 			{
+#if WINUI && WINDOWS10_0_18362_0_OR_GREATER
+				WinRT.Interop.InitializeWithWindow.Initialize(_messageDialog, _hwnd);
+#endif
 				var uiCommand = await _messageDialog.ShowAsync().AsTask(ct);
 
 				return uiCommand?.Id as CommandInformation<TResult>;

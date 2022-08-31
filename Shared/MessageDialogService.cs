@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Windows.System;
+#if WINUI
+using Microsoft.UI.Dispatching;
+using Microsoft.UI.Xaml;
+#endif
 using Windows.UI.Core;
 
 namespace MessageDialogService
