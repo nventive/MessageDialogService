@@ -15,7 +15,7 @@ namespace MessageDialogService
 	public partial class MessageDialogBuilderDelegate : IMessageDialogBuilderDelegate
 	{
 		private readonly Func<string, string> _resourcesProvider;
-#if WINUI && WINDOWS10_0_18362_0_OR_GREATER
+#if WINUI
 		private readonly IntPtr _windowHandle;
 #endif
 
@@ -55,7 +55,7 @@ namespace MessageDialogService
 		{
 			private MessageDialog _messageDialog;
 #if WINUI && WINDOWS10_0_18362_0_OR_GREATER
-			private IntPtr _hwnd;
+			private IntPtr _windowHandle;
 #endif
 
 			public MessageDialogWrapper(
@@ -66,7 +66,7 @@ namespace MessageDialogService
 			{
 				_messageDialog = new Windows.UI.Popups.MessageDialog(content: string.Empty);
 #if WINUI && WINDOWS10_0_18362_0_OR_GREATER
-				_hwnd = windowHandle;
+				_windowHandle = windowHandle;
 #endif
 			}
 
@@ -116,7 +116,7 @@ namespace MessageDialogService
 			public async Task<CommandInformation<TResult>> ShowMessage(CancellationToken ct)
 			{
 #if WINUI && WINDOWS10_0_18362_0_OR_GREATER
-				WinRT.Interop.InitializeWithWindow.Initialize(_messageDialog, _hwnd);
+				WinRT.Interop.InitializeWithWindow.Initialize(_messageDialog, _windowHandle);
 #endif
 				var uiCommand = await _messageDialog.ShowAsync().AsTask(ct);
 
