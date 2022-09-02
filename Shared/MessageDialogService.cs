@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 #if WINUI
+using MessageDialogService.Extensions;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml;
 #endif
