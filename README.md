@@ -20,9 +20,7 @@ The following is the template for the final README.md file:
 
 ---
 
-# Project Title
-
-Message Dialog Service
+# Message Dialog Service
 
 Enable customization into the MessageDialog rendering flow.
 
@@ -33,10 +31,10 @@ Enable customization into the MessageDialog rendering flow.
 Using a services provider or injecting the MessageDialogService into your VM, here's a classic implementation that gives resources for your text content.
 ```
 await _messageDialogService.ShowMessage(ct, mb => mb
-						.TitleResource("Title")
-						.ContentResource("Body")
-						.OkCommand()
-					);
+      .TitleResource("Title")
+      .ContentResource("Body")
+      .OkCommand()
+   );
 ```
 
 ### WinUI
@@ -45,19 +43,19 @@ When using the WinUI version of the package, a different type of `Dispatcher` ne
 var dispatch = DispatcherQueue.GetForCurrentThread();
 
 _messageDialogService = new MessageDialogService.MessageDialogService(dispatch,
-				new MessageDialogBuilderDelegate(
-					key => "key",
-					_windowHandle
-				)
-			);
+   new MessageDialogBuilderDelegate(
+      key => "key",
+      _windowHandle
+   )
+);
 ```
 
 #### Windows App SDK implementation
 For the Windows implementation, the service will need the receive a `WindowHandle` of the current window with `GetWindowHandle`.
 ```
 #if NET6_0_OR_GREATER && WINDOWS
-			_currentWindow = new Window();
-			_windowHandle = WinRT.Interop.WindowNative.GetWindowHandle(_currentWindow);
+	_currentWindow = new Window();
+	_windowHandle = WinRT.Interop.WindowNative.GetWindowHandle(_currentWindow);
 #endif
 ```
 
