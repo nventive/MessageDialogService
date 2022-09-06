@@ -20,7 +20,7 @@ namespace MessageDialogService
 		/// Initialises a new instance of the <see cref="MessageDialogBuilderDelegate"/> class.
 		/// </summary>
 		/// <param name="resourcesProvider">Returns a resource based on the provided key</param>
-		/// <param name="windowHandle"></param>
+		/// <param name="windowHandle">Based on the current window. This null safe param is only required for the windows implementation, otherwise it should receive null.</param>
 		public MessageDialogBuilderDelegate(Func<string, string> resourcesProvider, IntPtr? windowHandle)
 		{
 			_resourcesProvider = resourcesProvider;

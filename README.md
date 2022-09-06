@@ -22,16 +22,42 @@ The following is the template for the final README.md file:
 
 # Project Title
 
-{Project tag line}
+Message Dialog Service
 
-{Small description of the purpose of the project}
+Enable customization into the MessageDialog rendering flow.
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 
 ## Getting Started
 
-{Instructions to quickly get started using the project: pre-requisites, packages
-to install, sample code, etc.}
+Using a services provider or injecting the MessageDialogService into your VM, here's a classic implementation that gives resources for your text content.
+```
+await _messageDialogService.ShowMessage(ct, mb => mb
+						.TitleResource("Title")
+						.ContentResource("Body")
+						.OkCommand()
+					);
+```
+
+### WinUI
+When using the WinUI version of the package, a different type of `Dispatcher` needs to be given to the constructor.
+```
+_messageDialogService = new MessageDialogService.MessageDialogService(dispatch,
+				new MessageDialogBuilderDelegate(
+					key => "key",
+					_windowHandle
+				)
+			);
+```
+
+#### Windows App SDK implementation
+For the Windows implementation, the service will need the receive a `WindowHandle` of the current window with `GetWindowHandle`.
+```
+#if NET6_0_OR_GREATER && WINDOWS
+			_currentWindow = new Window();
+			_windowHandle = WinRT.Interop.WindowNative.GetWindowHandle(_currentWindow);
+#endif
+```
 
 ## Features
 
