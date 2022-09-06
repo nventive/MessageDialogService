@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace MessageDialogService
 {
-	public static partial class CollectionExtensions
+	internal static partial class CollectionExtensions
 	{
 		/// <summary>
 		/// Replaces the items in a collection with a new set of items.

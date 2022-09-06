@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace MessageDialogService
 {
-	public static partial class EnumerableExtensions
+	internal static partial class EnumerableExtensions
 	{
 		/// <summary>
 		/// Remove null values while enumerating
