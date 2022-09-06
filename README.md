@@ -40,8 +40,10 @@ await _messageDialogService.ShowMessage(ct, mb => mb
 ```
 
 ### WinUI
-When using the WinUI version of the package, a different type of `Dispatcher` needs to be given to the constructor.
+When using the WinUI version of the package, a different type of `Dispatcher` needs to be given to the constructor. Instead of a `CoreDispatcher`, the WinUI package will expecting a `DispatchQueue`.
 ```
+var dispatch = DispatcherQueue.GetForCurrentThread();
+
 _messageDialogService = new MessageDialogService.MessageDialogService(dispatch,
 				new MessageDialogBuilderDelegate(
 					key => "key",
