@@ -3,7 +3,6 @@
 // https://github.com/CommunityToolkit/WindowsCommunityToolkit/blob/main/License.md
 // See reference: https://github.com/CommunityToolkit/WindowsCommunityToolkit/blob/main/Microsoft.Toolkit.Uwp/Extensions/DispatcherQueueExtensions.cs
 
-
 using System;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -12,13 +11,11 @@ using Microsoft.UI.Dispatching;
 
 namespace MessageDialogService.Extensions
 {
-    internal static class DispatcherQueueExtensions
+	/// <summary>
+	/// This class exposes extensions methods on <see cref="DispatcherQueue"/>.
+	/// </summary>
+	internal static class DispatcherQueueExtensions
     {
-        /// <summary>
-        /// Indicates whether or not <see cref="DispatcherQueue.HasThreadAccess"/> is available.
-        /// </summary>
-        private static readonly bool IsHasThreadAccessPropertyAvailable = ApiInformation.IsMethodPresent("Windows.System.DispatcherQueue", "HasThreadAccess");
-
         /// <summary>
         /// Invokes a given function on the target <see cref="DispatcherQueue"/> and returns a
         /// <see cref="Task{TResult}"/> that acts as a proxy for the one returned by the given function.
@@ -31,7 +28,7 @@ namespace MessageDialogService.Extensions
         /// <remarks>If the current thread has access to <paramref name="dispatcher"/>, <paramref name="function"/> will be invoked directly.</remarks>
         internal static Task<T> EnqueueAsync<T>(this DispatcherQueue dispatcher, Func<Task<T>> function, DispatcherQueuePriority priority = DispatcherQueuePriority.Normal)
         {
-            if (IsHasThreadAccessPropertyAvailable && dispatcher.HasThreadAccess)
+            if (dispatcher.HasThreadAccess)
             {
                 try
                 {
