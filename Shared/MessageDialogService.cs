@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 #if WINUI
 using MessageDialogService.Extensions;
 using Microsoft.UI.Dispatching;
-using Microsoft.UI.Xaml;
 #endif
 using Windows.UI.Core;
 
