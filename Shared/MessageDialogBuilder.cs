@@ -50,7 +50,7 @@ namespace MessageDialogService
 				.FirstOrDefault(index => index > 0) - 1;
 
 			// Rearrange the commands array according to the defaultIndex and cancelIndex
-#if __ANDROID__ || NETFX_CORE
+#if __ANDROID__ || WINDOWS_UWP
 			if (defaultIndex != -1)
 			{
 				var element = _commands.ElementAt(defaultIndex);
@@ -65,7 +65,7 @@ namespace MessageDialogService
 				.Select((info, index) => info.IsDefaultCancel ? index + 1 : 0)
 				.LastOrDefault(index => index > 0) - 1;
 
-#if __ANDROID__ || NETFX_CORE
+#if __ANDROID__ || WINDOWS_UWP
 			if (cancelIndex != -1)
 			{
 				var element = _commands.ElementAt(cancelIndex);
