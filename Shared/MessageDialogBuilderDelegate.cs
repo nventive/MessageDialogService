@@ -14,8 +14,11 @@ namespace MessageDialogService
 	public partial class MessageDialogBuilderDelegate : IMessageDialogBuilderDelegate
 	{
 		private readonly Func<string, string> _resourcesProvider;
+#if WINDOWS10_0_18362_0_OR_GREATER
 		private readonly IntPtr? _windowHandle;
+#endif
 
+#if WINDOWS10_0_18362_0_OR_GREATER
 		/// <summary>
 		/// Initialises a new instance of the <see cref="MessageDialogBuilderDelegate"/> class.
 		/// </summary>
@@ -26,7 +29,16 @@ namespace MessageDialogService
 			_resourcesProvider = resourcesProvider;
 			_windowHandle = windowHandle;
 		}
-
+#else
+        /// <summary>
+        /// Initialises a new instance of the <see cref="MessageDialogBuilderDelegate"/> class.
+        /// </summary>
+        /// <param name="resourcesProvider">Returns a resource based on the provided key</param>
+        public MessageDialogBuilderDelegate(Func<string, string> resourcesProvider)
+		{
+			_resourcesProvider = resourcesProvider;
+		}
+#endif
 		public IMessageDialogCommand<TResult> CreateCommand<TResult>(CommandInformation<TResult> id, string label, Action action)
 		{
 			return new UICommandMessageDialogCommand<TResult>(id, label, action);
@@ -34,8 +46,12 @@ namespace MessageDialogService
 
 		public IMessageDialogBuildResult<TResult> CreateMessageDialogBuildResult<TResult>()
 		{
+#if WINDOWS10_0_18362_0_OR_GREATER
 			return new MessageDialogWrapper<TResult>(_windowHandle);
-		}
+#else
+            return new MessageDialogWrapper<TResult>();
+#endif
+        }
 
 		public string GetResourceString(string key)
 		{
@@ -45,13 +61,19 @@ namespace MessageDialogService
 		private class MessageDialogWrapper<TResult> : IMessageDialogBuildResult<TResult>
 		{
 			private MessageDialog _messageDialog;
+#if WINDOWS10_0_18362_0_OR_GREATER
 			private IntPtr? _windowHandle;
-
-			public MessageDialogWrapper(IntPtr? windowHandle)
+            public MessageDialogWrapper(IntPtr? windowHandle)
 			{
 				_messageDialog = new Windows.UI.Popups.MessageDialog(content: string.Empty);
 				_windowHandle = windowHandle;
 			}
+#else
+            public MessageDialogWrapper()
+            {
+                _messageDialog = new Windows.UI.Popups.MessageDialog(content: string.Empty);
+            }
+#endif
 
 			public string Title
 			{
