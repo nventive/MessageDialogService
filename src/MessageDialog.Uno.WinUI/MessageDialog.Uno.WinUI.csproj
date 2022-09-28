@@ -11,15 +11,22 @@
 		<PackageId>MessageDialogService.Uno.WinUI</PackageId>
 		<Description>MessageDialogService.Uno.WinUI</Description>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageTags>messagedialog;mvvm;maui;winui;ios;android</PackageTags>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/nventive/MessageDialogService</PackageProjectUrl>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<DefineConstants>$(DefineConstants);WINUI</DefineConstants>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="MSBuild.Sdk.Extras" Version="3.0.44">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-		</PackageReference>
 		<PackageReference Include="Uno.WinUI" Version="4.4.13" />
 	</ItemGroup>
+	<PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+		<DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
+	</PropertyGroup>
 	<ItemGroup Condition="'$(TargetFramework)'=='net6.0-windows10.0.18362'">
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.0" />
 		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.22000.24" />
@@ -33,6 +40,12 @@
 	</ItemGroup>
 	<ItemGroup>
 		<UpToDateCheckInput Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\MessageDialog\MessageDialog.csproj" />
