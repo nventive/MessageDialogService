@@ -9,6 +9,20 @@
 		<PackageId>MessageDialogService</PackageId>
 		<Description>MessageDialogService</Description>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<PackageTags>messagedialog;mvvm;xamarin;uwp;maui;winui;ios;android</PackageTags>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/nventive/MessageDialogService</PackageProjectUrl>
+
+		<!--Needed for Source Link support -->
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<!--Microsoft.SourceLink.GitHub is needed for Source Link support -->
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+	</ItemGroup>
 	
 </Project>
