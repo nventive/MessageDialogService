@@ -17,6 +17,8 @@
 		<PackageTags>messagedialog;mvvm;xamarin;uwp;ios;android</PackageTags>
 		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/nventive/MessageDialogService</PackageProjectUrl>
+
+		<!--Needed for Source Link support -->
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<IncludeSymbols>true</IncludeSymbols>
@@ -29,6 +31,11 @@
 
 	<ItemGroup>
 		<PackageReference Include="Uno.UI" Version="4.0.7" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!--Microsoft.SourceLink.GitHub is needed for Source Link support -->
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
 	</ItemGroup>
 
 	<ItemGroup>
