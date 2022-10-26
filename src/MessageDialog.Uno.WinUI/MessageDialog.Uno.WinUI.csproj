@@ -65,5 +65,5 @@
 		<ProjectReference Include="..\MessageDialog\MessageDialog.csproj" />
 	</ItemGroup>
 
-	<Import Project="..\..\Shared\Shared.projitems" Label="Shared" />
+	<Import Project="..\MessageDialog.Shared\MessageDialog.Shared.projitems" Label="MessageDialog.Shared" />
 </Project>

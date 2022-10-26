@@ -23,6 +23,7 @@
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<UserSecretsId>a4548876-7157-4573-acfc-82b235b19910</UserSecretsId>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
@@ -49,5 +50,5 @@
 		</None>
 	</ItemGroup>
 
-	<Import Project="..\..\Shared\Shared.projitems" Label="Shared" />
+	<Import Project="..\MessageDialog.Shared\MessageDialog.Shared.projitems" Label="MessageDialog.Shared" />
 </Project>
