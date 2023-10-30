@@ -66,4 +66,5 @@
 	</ItemGroup>
 
 	<Import Project="..\MessageDialog.Shared\MessageDialog.Shared.projitems" Label="MessageDialog.Shared" />
+	<Import Project="winappsdk-workaround.targets" />
 </Project>
