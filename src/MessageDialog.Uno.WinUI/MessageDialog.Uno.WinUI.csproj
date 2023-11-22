@@ -1,7 +1,7 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras/3.0.44">
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-windows10.0.18362;net7.0-android;net7.0-ios;net7.0-maccatalyst;net7.0-macos</TargetFrameworks>
-		<LangVersion>10.0</LangVersion>
+		<TargetFrameworks>net7.0-windows10.0.18362;net7.0-android;net7.0-ios;net7.0-maccatalyst;net7.0-macos;net8.0-windows10.0.18362;net8.0-android;net8.0-ios;net8.0-maccatalyst;net8.0-macos</TargetFrameworks>
+		<LangVersion>12.0</LangVersion>
 		<!-- Ensures the .xr.xml files are generated in a proper layout folder -->
 		<GenerateLibraryLayout>true</GenerateLibraryLayout>
 		<RootNamespace>MessageDialogService</RootNamespace>
@@ -16,6 +16,7 @@
 		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/nventive/MessageDialogService</PackageProjectUrl>
 		<DefineConstants>$(DefineConstants);WINUI</DefineConstants>
+		<RuntimeIdentifiers>win-x86;win-x64;</RuntimeIdentifiers>
 
 		<!--Needed for Source Link support -->
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -33,13 +34,13 @@
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'=='net7.0-windows10.0.18362'">
+	<ItemGroup Condition="'$(TargetFramework)'=='net7.0-windows10.0.18362' or '$(TargetFramework)'=='net8.0-windows10.0.18362'">
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.0" />
 		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.22000.24" />
 		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.22000.24" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'!='net7.0-windows10.0.18362'">
+	<ItemGroup Condition="'$(TargetFramework)'!='net7.0-windows10.0.18362' or '$(TargetFramework)'=='net8.0-windows10.0.18362'">
 		<Page Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
 		<Compile Update="**\*.xaml.cs">
 			<DependentUpon>%(Filename)</DependentUpon>
