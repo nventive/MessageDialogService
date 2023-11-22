@@ -10,7 +10,7 @@
 		<Description>MessageDialogService</Description>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<PackageTags>messagedialog;mvvm;xamarin;uwp;maui;winui;ios;android</PackageTags>
+		<PackageTags>messagedialog;mvvm;maui;winui;ios;android</PackageTags>
 		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
 		<PackageProjectUrl>https://github.com/nventive/MessageDialogService</PackageProjectUrl>
 
