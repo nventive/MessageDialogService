@@ -1,6 +1,6 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras/3.0.44">
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-windows10.0.18362;netstandard2.0;net7.0-android;net7.0-ios;net7.0-maccatalyst;net7.0-macos</TargetFrameworks>
+		<TargetFrameworks>net7.0-windows10.0.18362;net7.0-android;net7.0-ios;net7.0-maccatalyst;net7.0-macos</TargetFrameworks>
 		<LangVersion>10.0</LangVersion>
 		<!-- Ensures the .xr.xml files are generated in a proper layout folder -->
 		<GenerateLibraryLayout>true</GenerateLibraryLayout>
@@ -32,10 +32,6 @@
 		<!--Microsoft.SourceLink.GitHub is needed for Source Link support -->
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
 	</ItemGroup>
-
-	<PropertyGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
-		<DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
-	</PropertyGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)'=='net7.0-windows10.0.18362'">
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.0" />

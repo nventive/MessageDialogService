@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
 using Windows.UI.Popups;
-#if __IOS__ || __ANDROID__ || __WASM__
+#if __IOS__ || __ANDROID__
 using Uno.UI.Toolkit;
 #endif
 
@@ -143,7 +143,7 @@ namespace MessageDialogService
 			{
 				InnerCommand = new UICommand(label, c => action?.Invoke(), id);
 
-#if __IOS__ || __ANDROID__ || __WASM__
+#if __IOS__ || __ANDROID__
 				((UICommand)InnerCommand).SetDestructive(id.IsDestructive);
 #endif
 			}
