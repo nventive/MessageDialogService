@@ -1,4 +1,6 @@
 ## Getting Started
+⚠ This documentation is applicable for versions 1.0.X and below.
+
 Here is how to setup the service in your UWP or mobile apps made with Uno Platform (Uno.UI).
 
 1. Install the `MessageDialogService.Uno` nuget package.
