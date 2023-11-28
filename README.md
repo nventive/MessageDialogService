@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square)](LICENSE) ![Version](https://img.shields.io/nuget/v/MessageDialogService?style=flat-square) ![Downloads](https://img.shields.io/nuget/dt/MessageDialogService?style=flat-square)
 
 An abstraction layer for showing message dialogs in .Net applications.
-This supports WinUI, UWP, Android and iOS.
+This supports WinUI, Android and iOS.
 
 ```csharp
 await _messageDialogService.ShowMessage(ct, mb => mb
@@ -18,7 +18,7 @@ From left to right: WinUI, iOS and Android.
 ![](doc/images/dialog.png)
 
 ## Getting Started
-Here is how to setup the service in your WinUI or mobile apps made with Uno Platform. If you want to know how to setup this service for UWP, check out [getting started with UWP](doc/GettingStartedUWP.md).
+Here is how to setup the service in your WinUI or mobile apps made with Uno Platform.
 
 1. Install the `MessageDialogService.Uno.WinUI` NuGet package.
 
@@ -186,6 +186,10 @@ if (result == MessageDialogResult.Accept)
 
 It will look like this:
 ![](doc/images/destructive.png)
+
+## Legacy
+
+If you want to know how to setup this service for UWP, you need to use version 1.x.x and check out [getting started with UWP](doc/GettingStartedUWP.md).
 
 ## Changelog
 

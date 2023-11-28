@@ -19,16 +19,12 @@ namespace MessageDialogService
 	{
 #if WINUI
 		private readonly DispatcherQueue _dispatcher;
-#else
-		private readonly Func<CoreDispatcher> _dispatcher;
 #endif
 		private readonly IMessageDialogBuilderDelegate _messageDialogServiceDelegate;
 
 		public MessageDialogService(
 #if WINUI
 			DispatcherQueue dispatcher,
-#else
-			Func<CoreDispatcher> dispatcher,
 #endif
 			IMessageDialogBuilderDelegate messageDialogServiceDelegate
 		)
@@ -137,8 +133,6 @@ namespace MessageDialogService
 
 #if WINUI
 			var information = await DispatcherQueueExtensions.TryEnqueueAsync(_dispatcher, CreateDialogUI, DispatcherQueuePriority.Normal);
-#else
-			var information = await _dispatcher().RunTaskAsync(CoreDispatcherPriority.Normal, CreateDialogUI);
 #endif
 
 			return (information == null)

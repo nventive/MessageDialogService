@@ -14,11 +14,11 @@ namespace MessageDialogService
 	public partial class MessageDialogBuilderDelegate : IMessageDialogBuilderDelegate
 	{
 		private readonly Func<string, string> _resourcesProvider;
-#if WINDOWS10_0_18362_0_OR_GREATER
+#if WINDOWS10_0_19041_0_OR_GREATER
 		private readonly IntPtr? _windowHandle;
 #endif
 
-#if WINDOWS10_0_18362_0_OR_GREATER
+#if WINDOWS10_0_19041_0_OR_GREATER
 		/// <summary>
 		/// Initialises a new instance of the <see cref="MessageDialogBuilderDelegate"/> class.
 		/// </summary>
@@ -46,7 +46,7 @@ namespace MessageDialogService
 
 		public IMessageDialogBuildResult<TResult> CreateMessageDialogBuildResult<TResult>()
 		{
-#if WINDOWS10_0_18362_0_OR_GREATER
+#if WINDOWS10_0_19041_0_OR_GREATER
 			return new MessageDialogWrapper<TResult>(_windowHandle);
 #else
             return new MessageDialogWrapper<TResult>();
@@ -61,7 +61,7 @@ namespace MessageDialogService
 		private class MessageDialogWrapper<TResult> : IMessageDialogBuildResult<TResult>
 		{
 			private MessageDialog _messageDialog;
-#if WINDOWS10_0_18362_0_OR_GREATER
+#if WINDOWS10_0_19041_0_OR_GREATER
 			private IntPtr? _windowHandle;
             public MessageDialogWrapper(IntPtr? windowHandle)
 			{
@@ -120,7 +120,7 @@ namespace MessageDialogService
 
 			public async Task<CommandInformation<TResult>> ShowMessage(CancellationToken ct)
 			{
-#if WINDOWS10_0_18362_0_OR_GREATER
+#if WINDOWS10_0_19041_0_OR_GREATER
 				WinRT.Interop.InitializeWithWindow.Initialize(_messageDialog, (IntPtr)_windowHandle);
 #endif
 				var uiCommand = await _messageDialog.ShowAsync().AsTask(ct);
