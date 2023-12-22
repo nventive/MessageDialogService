@@ -33,6 +33,10 @@
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
 	</ItemGroup>
 
+	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0'">
+		<DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
+	</PropertyGroup>
+
 	<ItemGroup Condition="'$(TargetFramework)'=='net7.0-windows10.0.19041'">
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.0" />
 		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.22000.24" />
