@@ -1,7 +1,7 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/3.0.44">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net7.0;net7.0-windows10.0.19041;net7.0-android;net7.0-ios;net7.0-maccatalyst;net7.0-macos</TargetFrameworks>
-		<LangVersion>11.0</LangVersion>
+		<TargetFrameworks>net10.0;net10.0-windows10.0.22621.0;net10.0-android;net10.0-ios;net10.0-maccatalyst</TargetFrameworks>
+		<LangVersion>14</LangVersion>
 		<!-- Ensures the .xr.xml files are generated in a proper layout folder -->
 		<GenerateLibraryLayout>true</GenerateLibraryLayout>
 		<RootNamespace>MessageDialogService</RootNamespace>
@@ -17,6 +17,14 @@
 		<PackageProjectUrl>https://github.com/nventive/MessageDialogService</PackageProjectUrl>
 		<DefineConstants>$(DefineConstants);WINUI</DefineConstants>
 
+		<!-- 
+			Needed to use unsafe code for interop with WinRT.
+			
+			WinRT.SourceGenerator\Generator.WinRTAotSourceGenerator\WinRTGenericInstantiation.g.cs(450,31,450,48):
+				error CS0227: Unsafe code may only appear if compiling with /unsafe
+		-->
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
 		<!--Needed for Source Link support -->
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
@@ -24,26 +32,28 @@
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Uno.WinUI" Version="5.0.19" />
+	<ItemGroup Condition="'$(TargetFramework)'!='net10.0-windows10.0.22621.0'">
+		<PackageReference Include="Uno.WinUI" Version="6.3.62" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<!--Microsoft.SourceLink.GitHub is needed for Source Link support -->
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
 	</ItemGroup>
 
-	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0'">
+	<PropertyGroup Condition="'$(TargetFramework)'=='net10.0'">
 		<DefineConstants>$(DefineConstants);__WASM__</DefineConstants>
 	</PropertyGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'=='net7.0-windows10.0.19041'">
-		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.0" />
-		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.22000.24" />
-		<FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.22000.24" />
+	<ItemGroup Condition="'$(TargetFramework)'=='net10.0-windows10.0.22621.0'">
+		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250606001" />
 	</ItemGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'!='net7.0-windows10.0.19041'">
+	<PropertyGroup Condition="'$(TargetFramework)'=='net10.0-windows10.0.22621.0'">
+		<WindowsSdkPackageVersion>10.0.22621.38</WindowsSdkPackageVersion>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)'!='net10.0-windows10.0.22621.0'">
 		<Page Include="**\*.xaml" Exclude="bin\**\*.xaml;obj\**\*.xaml" />
 		<Compile Update="**\*.xaml.cs">
 			<DependentUpon>%(Filename)</DependentUpon>

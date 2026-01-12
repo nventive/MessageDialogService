@@ -1,5 +1,10 @@
 # Breaking Changes
 
+## 3.0.0
+
+* Updated .NET from 7 to 10.
+* Updated Uno from 5 to 6.
+
 ## 2.0.0
 
 * Added support for .NET 7.
